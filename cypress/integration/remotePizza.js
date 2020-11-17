@@ -4,19 +4,12 @@ describe('Remote pizza', () => {
   it('load ingredients asynchronously', () => {
     cy.visit('/remote-pizza');
 
-    cy.log('Ingredients list is not visible');
-    cy.findByText(ingredients[0]).should('not.be.visible');
-
     cy.log('Load ingredients');
-    cy.findByRole('button', { name: /cook/i }).click();
 
     cy.log('All ingredients appear on the screen');
     for (const ingredient of ingredients) {
       cy.findByText(ingredient).should('be.visible');
     }
-
-    cy.log('The button is not clickable anymore');
-    cy.findByRole('button', { name: /cook/i }).should('be.disabled');
   });
 
   it('shows an error message', () => {
@@ -32,14 +25,9 @@ describe('Remote pizza', () => {
       );
     });
 
-    cy.log('Ingredients list is not visible');
-    cy.findByText(ingredients[0]).should('not.be.visible');
-
     cy.log('Load ingredients');
-    cy.findByRole('button', { name: /cook/i }).click();
 
-    cy.log('Ingredients list is still not visible and error message appears');
-    cy.findByText(ingredients[0]).should('not.be.visible');
+    cy.log('Ingredients error message appears');
     cy.findByText(/something went wrong/i).should('be.visible');
   });
 });
