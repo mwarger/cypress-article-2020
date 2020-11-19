@@ -23,6 +23,7 @@ export default function RemotePizzaREnder({ fetchIngredients }) {
     };
     handleCook();
   }, [fetchIngredients]);
+
   return (
     <>
       <h3>Pizza</h3>
